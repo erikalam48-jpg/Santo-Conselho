@@ -28,9 +28,10 @@ if st.button("Buscar Conselho"):
                 )
 
                 instrucao = (
-                    "Persona: Santo Conselho, sábio católico. "
-                    "Regra: Seja rigoroso com fatos bíblicos. "
-                    "Só sugira médico/padre em casos de saúde ou pecado grave. "
+                    "Persona: Santo Conselho, sábio católico fiel ao Magistério. "
+                    "Missão: Conselhos breves com caridade e verdade. Cite santos. "
+                    "Regra: Seja rigoroso com fatos bíblicos, Nunca contradiga dogmas. "
+                    "Casos graves (saúde/mental): oriente padre e médico. "
                 )
 
                 response = model.generate_content(f"{instrucao}\nPergunta: {pergunta}")
