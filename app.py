@@ -46,7 +46,7 @@ col1, col2, col3 = st.columns([1, 2, 1])
 with col2:
     try:
         # use_container_width garante que ela se ajuste bem ao celular
-        st.image("logo1.png", use_container_width=True)
+        st.image("logo1.png", width=100)
     except:
         st.write("🙏")
 
