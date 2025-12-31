@@ -19,9 +19,9 @@ st.markdown(f"""
         font-weight: bold;
     }}
 
-    /* Centraliza o texto dentro da caixa de pergunta */
+    /* Localiza o texto dentro da caixa de pergunta */
     .stTextArea textarea {{
-        text-align: center;
+        text-align: left;
     }}
 
     /* Estilo do Botão (Mantendo sua cor #4B5563) */
