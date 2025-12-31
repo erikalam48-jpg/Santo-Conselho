@@ -72,7 +72,7 @@ if st.button("Buscar Conselho"):
                 # Sua lógica original do Gemma 3-27B
                 model = genai.GenerativeModel(
                     model_name='models/gemma-3-27b-it',
-                    generation_config={"max_output_tokens": 800, "temperature": 0.7}
+                    generation_config={"max_output_tokens": 2000, "temperature": 0.7}
                 )
 
                 instrucao = (
@@ -80,6 +80,7 @@ if st.button("Buscar Conselho"):
                     "Missão: Conselhos breves com caridade e verdade. Cite santos. Mantenha a precisão doutrinária, mas com um toque humano e variado. "
                     "Regra: Seja rigoroso com fatos bíblicos, Nunca contradiga dogmas. Sempre varie as metáforas, saudações, conclusões, exemplos de santos e passagens bíblicas. "
                     "Casos graves (saúde/mental): oriente padre e médico. "
+                    "Mantenha sua resposta completa e concisa. Certifique-se de concluir o raciocínio e finalizar com uma saudação cristã antes de atingir o limite de espaço. "
                 )
 
                 response = model.generate_content(f"{instrucao}\nPergunta: {pergunta}")
