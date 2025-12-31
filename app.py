@@ -2,13 +2,31 @@ import streamlit as st
 import google.generativeai as genai
 
 # 1. Configuração da Página
-st.set_page_config(page_title="Santo Conselho", page_icon="🙏")
+st.set_page_config(page_title="Santo Conselho", page_icon="🙏", layout="centered")
 
-# --- AJUSTE ESTÉTICO: CSS para o Botão ---
+# --- AJUSTE ESTÉTICO: Centralização e Cores ---
 st.markdown(f"""
     <style>
+    /* Centraliza todo o conteúdo do site */
+    .main .block-container {{
+        text-align: center;
+    }}
+
+    /* Muda a cor do título e centraliza */
+    h1 {{
+        color: #4B5563 !important;
+        text-align: center;
+        font-weight: bold;
+    }}
+
+    /* Centraliza o texto dentro da caixa de pergunta */
+    .stTextArea textarea {{
+        text-align: center;
+    }}
+
+    /* Estilo do Botão (Mantendo sua cor #4B5563) */
     div.stButton > button {{
-        background-color: #4B5563; /* A cor que você escolheu */
+        background-color: #4B5563;
         color: white;
         border-radius: 5px;
         height: 3em;
@@ -17,18 +35,20 @@ st.markdown(f"""
         border: none;
     }}
     div.stButton > button:hover {{
-        background-color: #374151; /* Tom levemente mais escuro para o efeito de passar o mouse */
+        background-color: #374151;
         color: white;
     }}
     </style>
 """, unsafe_allow_html=True)
 
-# 2. Inserindo a Logo (Certifique-se de que o arquivo logo1 está no GitHub com a extensão correta)
-try:
-    # Ajustei para logo1.png como padrão; se for .jpg, altere abaixo
-    st.image("logo1.png", width=150)
-except:
-    st.write("🙏 **Santo Conselho**")
+# 2. Inserindo a Logo Centralizada (Uso de colunas para Mobile e Desktop)
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
+    try:
+        # use_container_width garante que ela se ajuste bem ao celular
+        st.image("logo1.png", use_container_width=True)
+    except:
+        st.write("🙏")
 
 # 3. Configuração da API
 if "GEMINI_API_KEY" in st.secrets:
@@ -36,6 +56,7 @@ if "GEMINI_API_KEY" in st.secrets:
 else:
     st.error("Chave API não encontrada nas configurações.")
 
+# Título e Subtítulo centralizados
 st.title("Santo Conselho")
 st.write("Orientação espiritual fiel ao Magistério da Igreja.")
 
@@ -47,7 +68,7 @@ if st.button("Buscar Conselho"):
     if pergunta:
         with st.spinner("Consultando a sabedoria dos santos..."):
             try:
-                # Uso do modelo de alta performance Gemma 3-27B
+                # Sua lógica original do Gemma 3-27B
                 model = genai.GenerativeModel(
                     model_name='models/gemma-3-27b-it',
                     generation_config={"max_output_tokens": 800, "temperature": 0.7}
@@ -62,6 +83,7 @@ if st.button("Buscar Conselho"):
 
                 response = model.generate_content(f"{instrucao}\nPergunta: {pergunta}")
                 st.markdown("---")
+                # O texto da resposta também aparecerá centralizado
                 st.markdown(response.text)
 
             except Exception as e:
