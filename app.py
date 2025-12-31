@@ -41,12 +41,13 @@ st.markdown(f"""
     </style>
 """, unsafe_allow_html=True)
 
-# 2. Inserindo a Logo Centralizada (Uso de colunas para Mobile e Desktop)
-col1, col2, col3 = st.columns([1, 2, 1])
+# 2. Inserindo a Logo Centralizada (Ajuste de Proporção para diminuir o tamanho)
+# Aumentamos as laterais (2.5) e diminuímos o meio (1) para a logo ficar menor
+col1, col2, col3 = st.columns([2.5, 1, 2.5])
 with col2:
     try:
-        # use_container_width garante que ela se ajuste bem ao celular
-        st.image("logo1.png", use_container_width=True, width=100)
+        # use_container_width=True agora preenche apenas esse espaço menor central
+        st.image("logo1.png", use_container_width=True)
     except:
         st.write("🙏")
 
